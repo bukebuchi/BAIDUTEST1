@@ -297,7 +297,7 @@
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY"
-                   android:value="a4db7b9c14d20dc95198e407"/> <!--  </>值来自开发者平台取得的AppKey-->
+                   android:value="638e76fcca66609fc0bd456d"/> <!--  </>值来自开发者平台取得的AppKey-->
 
         <meta-data android:name="com.alibaba.app.appkey" android:value="24967317"/> <!-- 请填写你自己的- appKey -->
         <meta-data android:name="com.alibaba.app.appsecret" android:value="391dc06bc70dc9efbb313ab9d8980ead"/> <!-- 请填写你自己的appSecret -->

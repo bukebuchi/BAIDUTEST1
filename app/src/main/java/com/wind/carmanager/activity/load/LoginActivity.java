@@ -33,6 +33,9 @@ import com.wind.carmanager.utils.CheckUtils;
 import com.wind.carmanager.utils.JsonGenericsSerializator;
 import com.wind.carmanager.utils.NetUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -225,9 +228,12 @@ public class LoginActivity extends BaseActivity {
         } else {
             bean.setPassword(mPwd);
         }
-        OkHttpUtils.postString()
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("account", mPhoneNum);
+        params.put("password", mPwd);
+        OkHttpUtils.post()
                 .url(Api.LOGIN)
-                .content(new Gson().toJson(bean))
+                .params(params)
                 .build()
                 .execute(new GenericsCallback<LoginBean>(new JsonGenericsSerializator()) {
                     @Override
@@ -241,26 +247,18 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onResponse(LoginBean response, int id, int code) {
                         int mCode = response.getCode();
-                        if (mCode == 1000) {
+                        if (mCode == 1) {
                             //存储用户手机号码
-                            BaseInfoSPUtil.getInstance().setUserPhoneNum(LoginActivity.this, mPhoneNum);
-                            //登录凭证
-                            String token = response.getResult().getToken().getToken();
-                            //存储用户登录凭证
-                            BaseInfoSPUtil.getInstance().setLoginToken(LoginActivity.this, token);
-                            openActivity(MainActivity.class);
-                            finish();
-                        } else if (mCode == 1001) {
-                            showToast("没有有效的JSON数据");
-                        } else if (mCode == 1002) {
-                            showToast("缺少手机号码");
-                        } else if (mCode == 1003) {
-                            showToast("手机号未注册");
-                        } else if (mCode == 1004) {
-                            showToast("密码错误");
-                        } else if (mCode == 1005) {
-                            showToast("手机验证码错误");
-                        } else if (mCode == 1006) {
+                            showToast("成功登录");
+                         BaseInfoSPUtil.getInstance().setUserPhoneNum(LoginActivity.this, mPhoneNum);
+//                            //登录凭证
+//                            String token = response.getResult().getToken().getToken();
+//                            showToast(token);
+//                            //存储用户登录凭证
+//                            BaseInfoSPUtil.getInstance().setLoginToken(LoginActivity.this, token);
+                          openActivity(MainActivity.class);
+                          finish();
+                        } else if (mCode !=1) {
                             showToast("缺少密码和手机验证码");
                         }
                         mLoadingDialog.dismiss();

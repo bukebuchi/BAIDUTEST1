@@ -6,16 +6,16 @@ package com.wind.carmanager.okhttp.service;
  */
 public class LoginRequest {
 
-    private String phone;
+    private String account;
     private String password;
     private String veri_code;
 
     public String getPhone() {
-        return phone;
+        return account;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String account) {
+        this.account = account;
     }
 
     public String getPassword() {

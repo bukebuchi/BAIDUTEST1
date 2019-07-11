@@ -7,9 +7,9 @@ package com.wind.carmanager.okhttp.api;
 public class Api {
 
     //测试服务器地址
-    private static final String BASE_URL = "http://101.132.73.104:5002/api";
+    private static final String BASE_URL = "http://114.116.66.76/api";
 
-    public static final String LOGIN = BASE_URL + "/user/token"; //登录接口
+    public static final String LOGIN = BASE_URL + "/user/login"; //登录接口
     public static final String GET_PHONE_CODE = BASE_URL + "/user/verifycode"; //获取验证码
     public static final String REGISTER = BASE_URL + "/user"; //注册
     public static final String PASSWORD = BASE_URL + "/user/password"; //找回密码/验证手机验证码
